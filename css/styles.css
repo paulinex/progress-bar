@@ -1,0 +1,53 @@
+#progressbar {
+    margin-top: 20px;
+  }
+ 
+  .progress-label {
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+  }
+ 
+  .ui-dialog-titlebar-close {
+    display: none;
+  }
+
+#button_action { 
+	width: 105px;
+	margin:0 auto;
+}
+
+.ui-widget-content {
+	border:none;
+}
+.progress-label { 
+	text-shadow:none;
+	font-weight: normal;
+	text-align: center;
+}
+
+.ui-dialog { padding:0px;}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br,
+.ui-corner-left, .ui-corner-bl,.ui-corner-top, .ui-corner-tr,.ui-corner-tl
+ {
+	border-bottom-right-radius:0px;
+	border-bottom-left-radius:0px;
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.ui-dialog-buttonset button {
+	display: none;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+	padding: 0.1em 1em;
+}
+
+.ui-widget-header{
+	border: none;
+	color:#FFFFFF;
+}
+.ui-progressbar-value.ui-widget-header { 
+	background: url("images/ui-bg_highlight-soft_75_000000_1x100.png") repeat-x scroll 50% 50% 	#5bc0de;
+}

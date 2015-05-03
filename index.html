@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+         <link rel="stylesheet" href="css/bootstrap.min.css">
+         <link rel="stylesheet" href="css/styles.css">
+        <script>
+          $(function() {
+            var progressTimer,
+              progressbar = $( "#progressbar" ),
+              progressLabel = $( ".progress-label" ),
+              dialogButtons = [{
+                text: "Cancel",
+                click: closeDownload
+              }],
+              dialog = $( "#dialog" ).dialog({
+                modal:true,
+                autoOpen: false,
+                closeOnEscape: true,
+                resizable: false,
+                buttons: dialogButtons,
+                open: function() {
+                  progressTimer = setTimeout( progress, 2000 );
+                },
+                beforeClose: function() {
+                  downloadButton.button( "option", {
+                    disabled: false,
+                    label: "Start Progress"
+                  });
+                }
+              }),
+              downloadButton = $( "#downloadButton" )
+                .button()
+                .on( "click", function() {
+                  $( this ).button( "option", {
+                    disabled: true,
+                    label: "Progressing..."
+                  });
+                  dialog.dialog( "open" );
+                });
+         
+            function progress() {
+              var val = progressbar.progressbar( "value" ) || 0;
+         
+              progressbar.progressbar( "value", val + Math.floor( Math.random() * 3 ) );
+         
+              if ( val <= 99 ) {
+                progressTimer = setTimeout( progress, 50 );
+              }
+            }
+            
+             progressbar.progressbar({
+              value: false,
+              change: function() {
+                progressLabel.text( "Progress: " + progressbar.progressbar( "value" ) + "%" );
+              },
+              complete: function() {
+                progressLabel.text( "This task is 100% complete!" );
+                dialog.dialog( "option", "buttons", [{
+                  text: "Close",
+                  click: closeDownload
+                }]);
+                $(".ui-dialog button").last().focus();
+              }
+            });
+
+            function closeDownload() {
+              clearTimeout( progressTimer );
+              dialog
+                .dialog( "option", "buttons", dialogButtons )
+                .dialog( "close" );
+              progressbar.progressbar( "value", false );
+              progressLabel
+                .text( "Starting progressing..." );
+              downloadButton.focus();
+            }
+          });
+          </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="container">
+      <div class="row">
+      <div class="col-md-12">
+      <div id="dialog" title="Progress">
+          
+          <div id="progressbar"></div>
+          <div class="progress-label"></div>
+      </div>
+      <div id="button_action">
+          <button id="downloadButton" type="button" class="btn btn-success">My Modal Button</button>
+      </div>
+
+      </div>
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
